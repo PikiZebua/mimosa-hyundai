@@ -1,0 +1,22 @@
+[
+  {
+    "id": "promo-juni-2026",
+    "title": "Promo Akhir Tahun 2026",
+    "description": "Dapatkan cashback spesial dan kemudahan cicilan untuk pembelian unit Hyundai pilihan di bulan Juni 2026. Syarat dan ketentuan berlaku.",
+    "period": "1 Juni – 30 Juni 2026",
+    "image": "images/promo-juni.jpg",
+    "relatedProducts": ["new-creta", "stargazer-cartenz"],
+    "badge": "HOT",
+    "cta": "Hubungi Sales"
+  },
+  {
+    "id": "promo-test-drive",
+    "title": "Test Drive & Dapatkan Hadiah",
+    "description": "Lakukan test drive Hyundai Palisade HEV atau IONIQ 5 dan dapatkan hadiah menarik. Booking sekarang via WhatsApp.",
+    "period": "Berlaku sepanjang 2026",
+    "image": "images/promo-testdrive.jpg",
+    "relatedProducts": ["palisade-hev", "ioniq5"],
+    "badge": "NEW",
+    "cta": "Book Test Drive"
+  }
+]

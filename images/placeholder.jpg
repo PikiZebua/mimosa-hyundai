@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#e8f0fe"/>
+  <rect x="300" y="180" width="200" height="120" rx="8" fill="#c5d5f5"/>
+  <text x="400" y="330" font-family="sans-serif" font-size="18" fill="#003876" text-anchor="middle" font-weight="bold">Mimosa Hyundai</text>
+  <text x="400" y="355" font-family="sans-serif" font-size="13" fill="#5580c0" text-anchor="middle">Foto Segera Hadir</text>
+</svg>

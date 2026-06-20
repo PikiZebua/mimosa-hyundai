@@ -1,0 +1,190 @@
+[
+  {
+    "id": "palisade-hev",
+    "name": "Palisade HEV",
+    "year": 2026,
+    "category": "SUV",
+    "subcategory": "Hybrid",
+    "featured": true,
+    "tagline": "The All-New Hyundai Palisade HEV",
+    "description": "Palisade HEV hadir sebagai SUV premium 7-penumpang dengan sistem hybrid canggih yang menggabungkan performa luar biasa dengan efisiensi bahan bakar. Desain eksterior yang commanding dengan interior mewah menjadikannya pilihan ideal untuk keluarga modern yang aktif.",
+    "image": "images/palisade-hev.jpg",
+    "gallery": [],
+    "priceStart": 1138900000,
+    "variants": [
+      { "name": "Signature", "price": 1138900000 },
+      { "name": "Calligraphy", "price": 1311700000 },
+      { "name": "Calligraphy AWD", "price": 1398800000 }
+    ],
+    "specs": [
+      { "key": "Mesin", "value": "1.6L Turbo GDi Hybrid" },
+      { "key": "Transmisi", "value": "6-Speed DCT" },
+      { "key": "Kapasitas", "value": "7 Penumpang" },
+      { "key": "Penggerak", "value": "FWD / AWD (Calligraphy AWD)" }
+    ],
+    "notes": ["*Matte Color +Rp 3.500.000"]
+  },
+  {
+    "id": "santa-fe",
+    "name": "Santa Fe",
+    "year": 2026,
+    "category": "SUV",
+    "subcategory": "Hybrid",
+    "featured": false,
+    "tagline": "The All-New Hyundai Santa Fe",
+    "description": "Santa Fe generasi terbaru tampil dengan desain kotak yang bold dan maskulin. Tersedia dalam pilihan mesin Hybrid 2.5L dan Gasoline 2.5L, Santa Fe menawarkan fleksibilitas sesuai kebutuhan Anda.",
+    "image": "images/santa-fe.jpg",
+    "gallery": [],
+    "priceStart": 743000000,
+    "variants": [
+      { "name": "Hybrid Prime", "price": 834600000 },
+      { "name": "Hybrid Calligraphy", "price": 921900000 },
+      { "name": "Hybrid XRT", "price": 939600000 },
+      { "name": "2.5 Gasoline Prime A/T", "price": 743000000 },
+      { "name": "2.5 Gasoline Calligraphy A/T", "price": 832500000 }
+    ],
+    "specs": [
+      { "key": "Mesin Hybrid", "value": "2.5L GDi Hybrid" },
+      { "key": "Mesin Gasoline", "value": "2.5L MPI" },
+      { "key": "Transmisi", "value": "Automatic" },
+      { "key": "Kapasitas", "value": "7 Penumpang" }
+    ],
+    "notes": ["*Matte Color +Rp 3.500.000"]
+  },
+  {
+    "id": "kona-ev",
+    "name": "Kona EV",
+    "year": 2026,
+    "category": "SUV",
+    "subcategory": "Electric",
+    "featured": false,
+    "tagline": "The All-New Hyundai Kona EV",
+    "description": "Kona EV adalah crossover listrik yang stylish dan bertenaga. Dengan desain futuristik dan jangkauan berkendara yang impresif, Kona EV adalah pilihan sempurna untuk kehidupan urban modern.",
+    "image": "images/kona-ev.jpg",
+    "gallery": [],
+    "priceStart": 581850000,
+    "variants": [
+      { "name": "Style", "price": 581850000 },
+      { "name": "Prime Regular", "price": 600100000 },
+      { "name": "Prime Long Range", "price": 651100000 },
+      { "name": "Signature Regular", "price": 668200000 },
+      { "name": "Signature Long", "price": 685150000 },
+      { "name": "N Line", "price": 706150000 }
+    ],
+    "specs": [
+      { "key": "Motor", "value": "Elektromotor 160kW" },
+      { "key": "Baterai", "value": "48.4 kWh / 65.4 kWh (Long Range)" },
+      { "key": "Transmisi", "value": "Single Speed" },
+      { "key": "Kapasitas", "value": "5 Penumpang" }
+    ],
+    "notes": ["*Matte Color +Rp 3.500.000", "**Two Tone +Rp 3.000.000"]
+  },
+  {
+    "id": "ioniq5",
+    "name": "IONIQ 5",
+    "year": 2026,
+    "category": "Electric",
+    "subcategory": "Electric",
+    "featured": false,
+    "tagline": "Hyundai IONIQ 5",
+    "description": "IONIQ 5 adalah crossover listrik ikonik dengan desain pixel-inspired yang revolusioner. Dilengkapi teknologi pengisian ultra-cepat 800V dan interior luas dengan konsol tengah yang bisa digeser.",
+    "image": "images/ioniq5.jpg",
+    "gallery": [],
+    "priceStart": 824500000,
+    "variants": [
+      { "name": "Prime Regular", "price": 824500000 },
+      { "name": "Prime Long Range", "price": 868000000 },
+      { "name": "Signature Regular", "price": 890500000 },
+      { "name": "Signature Long Range", "price": 942200000 }
+    ],
+    "specs": [
+      { "key": "Motor", "value": "Elektromotor 160kW / 225kW" },
+      { "key": "Baterai", "value": "58 kWh / 77.4 kWh (Long Range)" },
+      { "key": "Pengisian", "value": "800V Ultra-Fast Charging" },
+      { "key": "Kapasitas", "value": "5 Penumpang" }
+    ],
+    "notes": ["*Matte Color +Rp 3.500.000"]
+  },
+  {
+    "id": "stargazer-cartenz-x",
+    "name": "Stargazer Cartenz X",
+    "year": 2026,
+    "category": "MPV",
+    "subcategory": "MPV",
+    "featured": false,
+    "tagline": "Hyundai Stargazer Cartenz X",
+    "description": "Stargazer Cartenz X hadir sebagai MPV premium dengan tampilan yang lebih bold dan sporty. Pilihan tepat untuk keluarga aktif yang menginginkan kapasitas penumpang besar tanpa mengorbankan gaya.",
+    "image": "images/stargazer-cartenz-x.jpg",
+    "gallery": [],
+    "priceStart": 378250000,
+    "variants": [
+      { "name": "Trend IVT", "price": 378250000 },
+      { "name": "Style IVT", "price": 391700000 },
+      { "name": "Prime 1T IVT", "price": 408700000 }
+    ],
+    "specs": [
+      { "key": "Mesin", "value": "1.5L MPI" },
+      { "key": "Transmisi", "value": "IVT" },
+      { "key": "Kapasitas", "value": "7 Penumpang" }
+    ],
+    "notes": ["*Captain Seat/Premium Color +Rp 3.500.000"]
+  },
+  {
+    "id": "stargazer-cartenz",
+    "name": "Stargazer Cartenz",
+    "year": 2026,
+    "category": "MPV",
+    "subcategory": "MPV",
+    "featured": false,
+    "tagline": "Hyundai Stargazer Cartenz",
+    "description": "Stargazer Cartenz menawarkan kombinasi sempurna antara kenyamanan, kapasitas, dan keterjangkauan. Tersedia dalam pilihan transmisi M/T dan IVT sesuai preferensi berkendara Anda.",
+    "image": "images/stargazer-cartenz.jpg",
+    "gallery": [],
+    "priceStart": 284100000,
+    "variants": [
+      { "name": "Trend M/T", "price": 284100000 },
+      { "name": "Trend IVT", "price": 294350000 },
+      { "name": "Style M/T", "price": 304600000 },
+      { "name": "Style IVT", "price": 314800000 },
+      { "name": "Smart HSS IVT", "price": 348350000 },
+      { "name": "Smart Non HSS IVT", "price": 338350000 },
+      { "name": "Prime HSS IVT", "price": 366300000 },
+      { "name": "Prime Non HSS IVT", "price": 356300000 }
+    ],
+    "specs": [
+      { "key": "Mesin", "value": "1.5L MPI" },
+      { "key": "Transmisi", "value": "M/T / IVT" },
+      { "key": "Kapasitas", "value": "7 Penumpang" }
+    ],
+    "notes": ["*Captain Seat +Rp 3.500.000"]
+  },
+  {
+    "id": "new-creta",
+    "name": "New Creta Facelift",
+    "year": 2026,
+    "category": "SUV",
+    "subcategory": "Compact SUV",
+    "featured": false,
+    "tagline": "Hyundai New Creta Facelift",
+    "description": "New Creta Facelift tampil segar dengan desain eksterior yang diperbarui dan fitur-fitur terkini. Compact SUV terlaris yang kini hadir dengan pilihan varian N Line yang sporty dan bertenaga.",
+    "image": "images/new-creta.jpg",
+    "gallery": [],
+    "priceStart": 315800000,
+    "variants": [
+      { "name": "Active M/T", "price": 315800000 },
+      { "name": "Trend M/T", "price": 348600000 },
+      { "name": "Trend IVT", "price": 369650000 },
+      { "name": "Style IVT", "price": 415350000 },
+      { "name": "Prime IVT", "price": 446500000 },
+      { "name": "Alpha IVT", "price": 463000000 },
+      { "name": "N Line", "price": 481000000 },
+      { "name": "N Line Turbo", "price": 529000000 }
+    ],
+    "specs": [
+      { "key": "Mesin", "value": "1.5L MPI / 1.4L T-GDi (N Line Turbo)" },
+      { "key": "Transmisi", "value": "M/T / IVT" },
+      { "key": "Kapasitas", "value": "5 Penumpang" }
+    ],
+    "notes": ["*Two Tone +Rp 3.000.000"]
+  }
+]
