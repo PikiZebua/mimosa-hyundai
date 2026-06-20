@@ -90,7 +90,7 @@
         const pills = (promo.relatedProducts || []).map(pid => {
           const prod = productMap[pid];
           if (!prod) return '';
-          return `<a href="detail.html?id=${pid}" class="inline-block bg-[#003876]/10 hover:bg-[#003876]/20 text-[#003876] text-xs font-semibold px-3 py-1 rounded-full transition-colors">${prod.name}</a>`;
+          return `<a href="product.html?id=${pid}" class="inline-block bg-[#003876]/10 hover:bg-[#003876]/20 text-[#003876] text-xs font-semibold px-3 py-1 rounded-full transition-colors">${prod.name}</a>`;
         }).join('');
 
         // WA message
