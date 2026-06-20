@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Semua Produk — Mimosa Hyundai Medan</title>
+  <meta name="description" content="Katalog lengkap Hyundai 2026 dengan harga OTR Medan. SUV, Electric, Hybrid, MPV tersedia."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/app.js"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+
+  <div id="navbar"></div>
+
+  <main>
+    <!-- Page Header -->
+    <section class="bg-white border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 class="text-3xl font-black text-[#003876]">Semua Produk</h1>
+        <p class="text-gray-500 text-sm mt-1">Harga OTR Medan &middot; Update Januari 2026</p>
+      </div>
+    </section>
+
+    <!-- Filters & Sort -->
+    <section class="bg-white border-b border-gray-100 sticky top-16 z-40 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center gap-3">
+        <!-- Filter Pills -->
+        <div class="flex flex-wrap gap-2 flex-1">
+          <button data-filter="Semua" class="filter-pill px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors">Semua</button>
+          <button data-filter="SUV" class="filter-pill px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors">SUV</button>
+          <button data-filter="Electric" class="filter-pill px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors">Electric</button>
+          <button data-filter="Hybrid" class="filter-pill px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors">Hybrid</button>
+          <button data-filter="MPV" class="filter-pill px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors">MPV</button>
+        </div>
+
+        <!-- Sort Dropdown -->
+        <div class="flex items-center gap-2">
+          <label for="sort-select" class="text-sm text-gray-500 whitespace-nowrap">Urutkan:</label>
+          <select id="sort-select" class="text-sm border border-gray-300 rounded-lg px-3 py-1.5 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#003876]">
+            <option value="default">Default</option>
+            <option value="price-asc">Harga Terendah</option>
+            <option value="price-desc">Harga Tertinggi</option>
+            <option value="name-az">Nama A-Z</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="col-span-full text-center text-gray-400 py-16">Memuat produk...</div>
+      </div>
+      <div id="no-results" class="hidden text-center py-16">
+        <div class="text-gray-400 text-lg font-semibold">Tidak ada produk ditemukan</div>
+        <p class="text-gray-400 text-sm mt-2">Coba pilih kategori lain</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+  <div id="wa-btn"></div>
+
+  <script>
+    let allProducts = [];
+    let currentFilter = 'Semua';
+    let currentSort = 'default';
+
+    function getProductFilter(p) {
+      if (p.category === 'Electric' || p.subcategory === 'Electric') return 'Electric';
+      if (p.subcategory === 'Hybrid') return 'Hybrid';
+      if (p.category === 'MPV') return 'MPV';
+      return 'SUV';
+    }
+
+    function renderCard(p) {
+      const filterTag = getProductFilter(p);
+      const badgeClass = getCategoryColor(p.subcategory || p.category);
+      const badgeLabel = getCategoryLabel(p.category, p.subcategory);
+      const shortDesc = p.description || '';
+      const price = formatPriceShort(p.priceStart);
+
+      return `
+        <a href="product.html?id=${p.id}" class="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:border-[#003876] hover:shadow-xl transition-all duration-300 flex flex-col">
+          <div class="aspect-[16/10] overflow-hidden bg-gray-100">
+            <img
+              src="${p.image}"
+              alt="${p.name}"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="handleImageError(this)"
+            />
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full ${badgeClass}">${badgeLabel}</span>
+              <span class="text-xs text-gray-400">${p.year}</span>
+            </div>
+            <h3 class="text-[#003876] font-black text-lg leading-tight mb-2">${p.name}</h3>
+            <p class="text-gray-500 text-sm line-clamp-2 flex-1 mb-4">${shortDesc}</p>
+            <div class="flex items-end justify-between mt-auto">
+              <div>
+                <div class="text-xs text-gray-400">Mulai dari</div>
+                <div class="text-[#003876] font-black text-base">${price}</div>
+              </div>
+              <span class="text-[#003876] font-semibold text-sm group-hover:translate-x-1 transition-transform duration-200">Detail &rarr;</span>
+            </div>
+          </div>
+        </a>`;
+    }
+
+    function applyFilterAndSort() {
+      let filtered = allProducts.filter(p => {
+        if (currentFilter === 'Semua') return true;
+        return getProductFilter(p) === currentFilter;
+      });
+
+      if (currentSort === 'price-asc') {
+        filtered.sort((a, b) => a.priceStart - b.priceStart);
+      } else if (currentSort === 'price-desc') {
+        filtered.sort((a, b) => b.priceStart - a.priceStart);
+      } else if (currentSort === 'name-az') {
+        filtered.sort((a, b) => a.name.localeCompare(b.name, 'id'));
+      }
+
+      const grid = document.getElementById('product-grid');
+      const noResults = document.getElementById('no-results');
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+        grid.innerHTML = filtered.map(renderCard).join('');
+      }
+    }
+
+    function setActiveFilter(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-pill').forEach(btn => {
+        const isActive = btn.dataset.filter === filter;
+        btn.className = `filter-pill px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors ${
+          isActive
+            ? 'bg-[#003876] text-white border-[#003876]'
+            : 'bg-white text-gray-600 border-gray-300 hover:border-[#003876] hover:text-[#003876]'
+        }`;
+      });
+
+      const url = new URL(window.location.href);
+      if (filter === 'Semua') {
+        url.searchParams.delete('cat');
+      } else {
+        url.searchParams.set('cat', filter);
+      }
+      history.replaceState(null, '', url.toString());
+
+      applyFilterAndSort();
+    }
+
+    async function init() {
+      // Render navbar and footer
+      const [products, dealer] = await Promise.all([
+        loadJSON('products.json'),
+        loadJSON('dealer.json')
+      ]);
+
+      document.getElementById('navbar').innerHTML = renderNavbar('catalog.html');
+      document.getElementById('footer').innerHTML = renderFooter(dealer);
+      initMobileMenu();
+      initWAButton(dealer);
+
+      allProducts = products;
+
+      // Check URL param
+      const params = new URLSearchParams(window.location.search);
+      const catParam = params.get('cat');
+      const validFilters = ['Semua', 'SUV', 'Electric', 'Hybrid', 'MPV'];
+      const initialFilter = validFilters.includes(catParam) ? catParam : 'Semua';
+
+      // Wire filter pills
+      document.querySelectorAll('.filter-pill').forEach(btn => {
+        btn.addEventListener('click', () => setActiveFilter(btn.dataset.filter));
+      });
+
+      // Wire sort
+      document.getElementById('sort-select').addEventListener('change', e => {
+        currentSort = e.target.value;
+        applyFilterAndSort();
+      });
+
+      setActiveFilter(initialFilter);
+    }
+
+    init().catch(err => {
+      console.error(err);
+      document.getElementById('product-grid').innerHTML = '<div class="col-span-full text-center text-red-400 py-16">Gagal memuat produk.</div>';
+    });
+  </script>
+
+</body>
+</html>
