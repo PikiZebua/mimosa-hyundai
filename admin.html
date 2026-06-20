@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMS Admin — Mimosa Hyundai</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    [x-cloak] { display: none !important; }
+    .tab-btn.active { border-bottom: 3px solid #002C5F; color: #002C5F; font-weight: 700; }
+    .tab-btn { border-bottom: 3px solid transparent; }
+    input[type="checkbox"] { accent-color: #002C5F; }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+  <!-- Admin Navbar -->
+  <nav class="bg-[#002C5F] text-white px-6 py-3 flex items-center justify-between shadow-md">
+    <div class="flex items-center gap-3">
+      <span class="font-bold text-lg tracking-wide">MIMOSA HYUNDAI</span>
+      <span class="text-blue-300 text-sm font-medium">— CMS Admin</span>
+    </div>
+    <a href="index.html" class="text-sm text-blue-200 hover:text-white transition flex items-center gap-1">
+      ← Lihat Website
+    </a>
+  </nav>
+
+  <!-- Info Banner -->
+  <div class="bg-blue-50 border-l-4 border-blue-400 px-6 py-3 text-sm text-blue-800">
+    <strong>Cara kerja:</strong> Edit data di sini, lalu klik tombol <strong>Export JSON</strong> pada tiap tab.
+    Salin file yang diunduh ke folder <code class="bg-blue-100 px-1 rounded">data/</code> di server untuk memperbarui konten website.
+    Perubahan tidak langsung terlihat — upload file JSON yang diekspor ke hosting.
+  </div>
+
+  <!-- Tab Bar -->
+  <div class="bg-white border-b border-gray-200 px-6 flex gap-6">
+    <button onclick="switchTab('produk')" id="tab-produk" class="tab-btn active py-3 px-1 text-sm transition">Produk</button>
+    <button onclick="switchTab('promo')" id="tab-promo" class="tab-btn py-3 px-1 text-sm text-gray-500 transition">Promo</button>
+    <button onclick="switchTab('dealer')" id="tab-dealer" class="tab-btn py-3 px-1 text-sm text-gray-500 transition">Info Dealer</button>
+  </div>
+
+  <!-- ===================== TAB: PRODUK ===================== -->
+  <div id="panel-produk" class="p-6">
+    <div class="flex gap-6 max-w-screen-xl mx-auto">
+
+      <!-- LEFT: Form -->
+      <div class="w-full lg:w-1/2 bg-white rounded-lg shadow p-6">
+        <h2 class="font-bold text-base text-[#002C5F] mb-4" id="produk-form-title">Tambah Produk Baru</h2>
+        <form id="produk-form" onsubmit="saveProduk(event)" class="space-y-3">
+          <input type="hidden" id="produk-edit-index" value="">
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium mb-1">Nama Produk *</label>
+              <input id="p-name" type="text" required class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Palisade HEV" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">ID / Slug *</label>
+              <input id="p-id" type="text" required class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="palisade-hev" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium mb-1">Kategori</label>
+              <select id="p-category" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option>SUV</option>
+                <option>MPV</option>
+                <option>Electric</option>
+                <option>Sedan</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Sub-kategori</label>
+              <select id="p-subcategory" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option>SUV</option>
+                <option>Hybrid</option>
+                <option>Electric</option>
+                <option>Compact SUV</option>
+                <option>MPV</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium mb-1">Tahun</label>
+              <input id="p-year" type="number" value="2026" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+            <div class="flex items-end pb-1">
+              <label class="flex items-center gap-2 text-sm cursor-pointer">
+                <input id="p-featured" type="checkbox" class="w-4 h-4" />
+                <span>Featured (tampilkan di homepage)</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium mb-1">Tagline</label>
+            <input id="p-tagline" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="The All-New Hyundai Palisade HEV" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium mb-1">Deskripsi</label>
+            <textarea id="p-description" rows="3" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium mb-1">Path Foto Utama</label>
+            <input id="p-image" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="images/palisade-hev.jpg" />
+          </div>
+
+          <!-- Variants -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label class="text-xs font-medium">Varian & Harga</label>
+              <button type="button" onclick="addVariantRow()" class="text-xs bg-blue-50 hover:bg-blue-100 text-blue-700 px-2 py-1 rounded border border-blue-200 transition">+ Tambah Varian</button>
+            </div>
+            <div id="variants-container" class="space-y-2"></div>
+          </div>
+
+          <!-- Specs -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label class="text-xs font-medium">Spesifikasi</label>
+              <button type="button" onclick="addSpecRow()" class="text-xs bg-blue-50 hover:bg-blue-100 text-blue-700 px-2 py-1 rounded border border-blue-200 transition">+ Tambah Spesifikasi</button>
+            </div>
+            <div id="specs-container" class="space-y-2"></div>
+          </div>
+
+          <!-- Notes -->
+          <div>
+            <label class="block text-xs font-medium mb-1">Catatan Harga (satu catatan per baris)</label>
+            <textarea id="p-notes" rows="2" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="*Matte Color +Rp 3.500.000&#10;*Termasuk asuransi 1 tahun"></textarea>
+          </div>
+
+          <div class="flex gap-3 pt-2">
+            <button type="submit" class="bg-[#002C5F] hover:bg-[#00408a] text-white text-sm font-medium px-5 py-2 rounded transition">Simpan Produk</button>
+            <button type="button" onclick="resetProdukForm()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm px-5 py-2 rounded transition">Reset</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- RIGHT: List -->
+      <div class="w-full lg:w-1/2">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="font-bold text-base text-[#002C5F]">Daftar Produk (<span id="produk-count">0</span>)</h2>
+          <button onclick="exportJSON(products, 'products.json')" class="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded transition flex items-center gap-1">↓ Export products.json</button>
+        </div>
+        <div id="produk-list" class="space-y-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== TAB: PROMO ===================== -->
+  <div id="panel-promo" class="p-6 hidden">
+    <div class="flex gap-6 max-w-screen-xl mx-auto">
+
+      <!-- LEFT: Form -->
+      <div class="w-full lg:w-1/2 bg-white rounded-lg shadow p-6">
+        <h2 class="font-bold text-base text-[#002C5F] mb-4" id="promo-form-title">Tambah Promo Baru</h2>
+        <form id="promo-form" onsubmit="savePromo(event)" class="space-y-3">
+          <input type="hidden" id="promo-edit-index" value="">
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium mb-1">ID Promo *</label>
+              <input id="pr-id" type="text" required class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="promo-juni-2026" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Badge</label>
+              <select id="pr-badge" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="">— Tidak ada —</option>
+                <option value="HOT">HOT</option>
+                <option value="NEW">NEW</option>
+                <option value="LIMITED">LIMITED</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium mb-1">Judul Promo *</label>
+            <input id="pr-title" type="text" required class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Promo Akhir Tahun 2026" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium mb-1">Deskripsi</label>
+            <textarea id="pr-description" rows="3" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium mb-1">Periode</label>
+            <input id="pr-period" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="1 Juni – 30 Juni 2026" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium mb-1">Teks CTA</label>
+            <input id="pr-cta" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Hubungi Sales" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium mb-1">Path Gambar</label>
+            <input id="pr-image" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="images/promo-juni.jpg" />
+          </div>
+
+          <div class="flex gap-3 pt-2">
+            <button type="submit" class="bg-[#002C5F] hover:bg-[#00408a] text-white text-sm font-medium px-5 py-2 rounded transition">Simpan Promo</button>
+            <button type="button" onclick="resetPromoForm()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm px-5 py-2 rounded transition">Reset</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- RIGHT: List -->
+      <div class="w-full lg:w-1/2">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="font-bold text-base text-[#002C5F]">Daftar Promo (<span id="promo-count">0</span>)</h2>
+          <button onclick="exportJSON(promos, 'promos.json')" class="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded transition flex items-center gap-1">↓ Export promos.json</button>
+        </div>
+        <div id="promo-list" class="space-y-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== TAB: INFO DEALER ===================== -->
+  <div id="panel-dealer" class="p-6 hidden">
+    <div class="max-w-2xl mx-auto">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="font-bold text-base text-[#002C5F]">Info Dealer</h2>
+        <button onclick="exportJSON(dealer, 'dealer.json')" class="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded transition">↓ Export dealer.json</button>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6">
+        <form id="dealer-form" onsubmit="saveDealer(event)" class="space-y-3">
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium mb-1">Nama Dealer</label>
+              <input id="d-name" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Tagline</label>
+              <input id="d-tagline" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium mb-1">Nama Perusahaan</label>
+            <input id="d-company" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium mb-1">Alamat</label>
+            <input id="d-address" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium mb-1">Telepon</label>
+              <input id="d-phone" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">WhatsApp</label>
+              <input id="d-whatsapp" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium mb-1">Email</label>
+              <input id="d-email" type="email" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Website</label>
+              <input id="d-website" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium mb-1">Jam Operasional</label>
+            <input id="d-hours" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Senin–Sabtu 08.00–17.00 WIB" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium mb-1">Google Maps Embed URL</label>
+            <input id="d-maps" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="https://www.google.com/maps/embed?pb=..." />
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium mb-1">Instagram URL</label>
+              <input id="d-instagram" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="https://instagram.com/mimosahyundai" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Facebook URL</label>
+              <input id="d-facebook" type="text" class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="https://facebook.com/mimosahyundai" />
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button type="submit" class="bg-[#002C5F] hover:bg-[#00408a] text-white text-sm font-medium px-5 py-2 rounded transition">Simpan Perubahan</button>
+          </div>
+        </form>
+
+        <div id="dealer-saved-msg" class="hidden mt-3 text-sm text-green-700 bg-green-50 border border-green-200 rounded px-4 py-2">
+          Perubahan tersimpan di memori. Klik <strong>Export dealer.json</strong> untuk mengunduh file.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ─── State ───────────────────────────────────────────────
+    let products = [];
+    let promos = [];
+    let dealer = {};
+
+    // ─── Tab switching ────────────────────────────────────────
+    function switchTab(tab) {
+      ['produk', 'promo', 'dealer'].forEach(t => {
+        document.getElementById('panel-' + t).classList.add('hidden');
+        document.getElementById('tab-' + t).classList.remove('active');
+        document.getElementById('tab-' + t).classList.add('text-gray-500');
+      });
+      document.getElementById('panel-' + tab).classList.remove('hidden');
+      document.getElementById('tab-' + tab).classList.add('active');
+      document.getElementById('tab-' + tab).classList.remove('text-gray-500');
+    }
+
+    // ─── Utilities ────────────────────────────────────────────
+    function fmt(price) {
+      if (!price) return '-';
+      return 'Rp ' + Number(price).toLocaleString('id-ID');
+    }
+
+    function shortPrice(variants) {
+      if (!variants || !variants.length) return '-';
+      const prices = variants.map(v => v.price).filter(Boolean);
+      if (!prices.length) return '-';
+      const min = Math.min(...prices);
+      return 'ab ' + fmt(min);
+    }
+
+    function exportJSON(data, filename) {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // ─── PRODUK ──────────────────────────────────────────────
+
+    function renderProdukList() {
+      const el = document.getElementById('produk-list');
+      document.getElementById('produk-count').textContent = products.length;
+      if (!products.length) {
+        el.innerHTML = '<p class="text-sm text-gray-400 italic">Belum ada produk.</p>';
+        return;
+      }
+      el.innerHTML = products.map((p, i) => `
+        <div class="bg-white rounded-lg shadow-sm border border-gray-100 px-4 py-3 flex items-start justify-between gap-2">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-semibold text-sm">${p.name || '—'}</span>
+              ${p.featured ? '<span class="text-yellow-500 text-xs">★ Featured</span>' : ''}
+              <span class="text-gray-400 text-xs">${p.id || ''}</span>
+            </div>
+            <div class="text-xs text-gray-500 mt-0.5">${p.subcategory || p.category || ''} · ${shortPrice(p.variants)}</div>
+          </div>
+          <div class="flex gap-2 flex-shrink-0">
+            <button onclick="editProduk(${i})" class="text-xs bg-blue-50 hover:bg-blue-100 text-blue-700 px-3 py-1 rounded border border-blue-200 transition">Edit</button>
+            <button onclick="deleteProduk(${i})" class="text-xs bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1 rounded border border-red-200 transition">Hapus</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addVariantRow(nama = '', harga = '') {
+      const c = document.getElementById('variants-container');
+      const row = document.createElement('div');
+      row.className = 'flex gap-2 items-center variant-row';
+      row.innerHTML = `
+        <input type="text" placeholder="Nama varian" value="${nama}" class="flex-1 border rounded px-2 py-1.5 text-sm variant-name focus:outline-none focus:ring-1 focus:ring-blue-400" />
+        <input type="number" placeholder="Harga" value="${harga}" class="w-36 border rounded px-2 py-1.5 text-sm variant-price focus:outline-none focus:ring-1 focus:ring-blue-400" />
+        <button type="button" onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-600 text-lg leading-none px-1">×</button>
+      `;
+      c.appendChild(row);
+    }
+
+    function addSpecRow(key = '', value = '') {
+      const c = document.getElementById('specs-container');
+      const row = document.createElement('div');
+      row.className = 'flex gap-2 items-center spec-row';
+      row.innerHTML = `
+        <input type="text" placeholder="Nama spek (e.g. Mesin)" value="${key}" class="flex-1 border rounded px-2 py-1.5 text-sm spec-key focus:outline-none focus:ring-1 focus:ring-blue-400" />
+        <input type="text" placeholder="Nilai" value="${value}" class="flex-1 border rounded px-2 py-1.5 text-sm spec-value focus:outline-none focus:ring-1 focus:ring-blue-400" />
+        <button type="button" onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-600 text-lg leading-none px-1">×</button>
+      `;
+      c.appendChild(row);
+    }
+
+    function getVariants() {
+      return Array.from(document.querySelectorAll('.variant-row')).map(row => ({
+        name: row.querySelector('.variant-name').value.trim(),
+        price: Number(row.querySelector('.variant-price').value) || 0
+      })).filter(v => v.name);
+    }
+
+    function getSpecs() {
+      return Array.from(document.querySelectorAll('.spec-row')).map(row => ({
+        key: row.querySelector('.spec-key').value.trim(),
+        value: row.querySelector('.spec-value').value.trim()
+      })).filter(s => s.key);
+    }
+
+    function saveProduk(e) {
+      e.preventDefault();
+      const editIndex = document.getElementById('produk-edit-index').value;
+      const variants = getVariants();
+      const priceStart = variants.length ? Math.min(...variants.map(v => v.price).filter(Boolean)) : 0;
+      const notes = document.getElementById('p-notes').value.trim()
+        .split('\n').map(s => s.trim()).filter(Boolean);
+
+      const produk = {
+        id: document.getElementById('p-id').value.trim(),
+        name: document.getElementById('p-name').value.trim(),
+        year: Number(document.getElementById('p-year').value) || 2026,
+        category: document.getElementById('p-category').value,
+        subcategory: document.getElementById('p-subcategory').value,
+        featured: document.getElementById('p-featured').checked,
+        tagline: document.getElementById('p-tagline').value.trim(),
+        description: document.getElementById('p-description').value.trim(),
+        image: document.getElementById('p-image').value.trim(),
+        gallery: [],
+        priceStart,
+        variants,
+        specs: getSpecs(),
+        notes
+      };
+
+      if (editIndex !== '') {
+        products[Number(editIndex)] = produk;
+      } else {
+        products.push(produk);
+      }
+
+      renderProdukList();
+      resetProdukForm();
+    }
+
+    function resetProdukForm() {
+      document.getElementById('produk-form').reset();
+      document.getElementById('produk-edit-index').value = '';
+      document.getElementById('produk-form-title').textContent = 'Tambah Produk Baru';
+      document.getElementById('variants-container').innerHTML = '';
+      document.getElementById('specs-container').innerHTML = '';
+      document.getElementById('p-year').value = 2026;
+    }
+
+    function editProduk(i) {
+      const p = products[i];
+      document.getElementById('produk-edit-index').value = i;
+      document.getElementById('produk-form-title').textContent = 'Edit Produk: ' + p.name;
+      document.getElementById('p-name').value = p.name || '';
+      document.getElementById('p-id').value = p.id || '';
+      document.getElementById('p-category').value = p.category || 'SUV';
+      document.getElementById('p-subcategory').value = p.subcategory || 'SUV';
+      document.getElementById('p-year').value = p.year || 2026;
+      document.getElementById('p-featured').checked = !!p.featured;
+      document.getElementById('p-tagline').value = p.tagline || '';
+      document.getElementById('p-description').value = p.description || '';
+      document.getElementById('p-image').value = p.image || '';
+      document.getElementById('p-notes').value = (p.notes || []).join('\n');
+
+      document.getElementById('variants-container').innerHTML = '';
+      (p.variants || []).forEach(v => addVariantRow(v.name, v.price));
+
+      document.getElementById('specs-container').innerHTML = '';
+      (p.specs || []).forEach(s => addSpecRow(s.key, s.value));
+
+      document.getElementById('produk-form').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function deleteProduk(i) {
+      const name = products[i].name || 'produk ini';
+      if (!confirm(`Hapus "${name}"? Tindakan ini tidak bisa dibatalkan.`)) return;
+      products.splice(i, 1);
+      renderProdukList();
+    }
+
+    // ─── PROMO ───────────────────────────────────────────────
+
+    function renderPromoList() {
+      const el = document.getElementById('promo-list');
+      document.getElementById('promo-count').textContent = promos.length;
+      if (!promos.length) {
+        el.innerHTML = '<p class="text-sm text-gray-400 italic">Belum ada promo.</p>';
+        return;
+      }
+      el.innerHTML = promos.map((pr, i) => `
+        <div class="bg-white rounded-lg shadow-sm border border-gray-100 px-4 py-3 flex items-start justify-between gap-2">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-semibold text-sm">${pr.title || '—'}</span>
+              ${pr.badge ? `<span class="bg-red-100 text-red-700 text-xs font-bold px-1.5 py-0.5 rounded">${pr.badge}</span>` : ''}
+            </div>
+            <div class="text-xs text-gray-500 mt-0.5">${pr.period || ''} · ID: ${pr.id || ''}</div>
+          </div>
+          <div class="flex gap-2 flex-shrink-0">
+            <button onclick="editPromo(${i})" class="text-xs bg-blue-50 hover:bg-blue-100 text-blue-700 px-3 py-1 rounded border border-blue-200 transition">Edit</button>
+            <button onclick="deletePromo(${i})" class="text-xs bg-red-50 hover:bg-red-100 text-red-600 px-3 py-1 rounded border border-red-200 transition">Hapus</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function savePromo(e) {
+      e.preventDefault();
+      const editIndex = document.getElementById('promo-edit-index').value;
+      const promo = {
+        id: document.getElementById('pr-id').value.trim(),
+        title: document.getElementById('pr-title').value.trim(),
+        description: document.getElementById('pr-description').value.trim(),
+        period: document.getElementById('pr-period').value.trim(),
+        badge: document.getElementById('pr-badge').value,
+        cta: document.getElementById('pr-cta').value.trim(),
+        image: document.getElementById('pr-image').value.trim(),
+        relatedProducts: []
+      };
+
+      if (editIndex !== '') {
+        promos[Number(editIndex)] = promo;
+      } else {
+        promos.push(promo);
+      }
+
+      renderPromoList();
+      resetPromoForm();
+    }
+
+    function resetPromoForm() {
+      document.getElementById('promo-form').reset();
+      document.getElementById('promo-edit-index').value = '';
+      document.getElementById('promo-form-title').textContent = 'Tambah Promo Baru';
+    }
+
+    function editPromo(i) {
+      const pr = promos[i];
+      document.getElementById('promo-edit-index').value = i;
+      document.getElementById('promo-form-title').textContent = 'Edit Promo: ' + pr.title;
+      document.getElementById('pr-id').value = pr.id || '';
+      document.getElementById('pr-title').value = pr.title || '';
+      document.getElementById('pr-description').value = pr.description || '';
+      document.getElementById('pr-period').value = pr.period || '';
+      document.getElementById('pr-badge').value = pr.badge || '';
+      document.getElementById('pr-cta').value = pr.cta || '';
+      document.getElementById('pr-image').value = pr.image || '';
+      document.getElementById('promo-form').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function deletePromo(i) {
+      const title = promos[i].title || 'promo ini';
+      if (!confirm(`Hapus "${title}"?`)) return;
+      promos.splice(i, 1);
+      renderPromoList();
+    }
+
+    // ─── DEALER ──────────────────────────────────────────────
+
+    function fillDealerForm(d) {
+      document.getElementById('d-name').value = d.name || '';
+      document.getElementById('d-tagline').value = d.tagline || '';
+      document.getElementById('d-company').value = d.company || '';
+      document.getElementById('d-address').value = d.address || '';
+      document.getElementById('d-phone').value = d.phone || '';
+      document.getElementById('d-whatsapp').value = d.whatsapp || '';
+      document.getElementById('d-email').value = d.email || '';
+      document.getElementById('d-website').value = d.website || '';
+      document.getElementById('d-hours').value = d.hours || '';
+      document.getElementById('d-maps').value = d.mapsEmbed || '';
+      document.getElementById('d-instagram').value = d.instagram || '';
+      document.getElementById('d-facebook').value = d.facebook || '';
+    }
+
+    function saveDealer(e) {
+      e.preventDefault();
+      dealer = {
+        ...dealer,
+        name: document.getElementById('d-name').value.trim(),
+        tagline: document.getElementById('d-tagline').value.trim(),
+        company: document.getElementById('d-company').value.trim(),
+        address: document.getElementById('d-address').value.trim(),
+        phone: document.getElementById('d-phone').value.trim(),
+        whatsapp: document.getElementById('d-whatsapp').value.trim(),
+        email: document.getElementById('d-email').value.trim(),
+        website: document.getElementById('d-website').value.trim(),
+        hours: document.getElementById('d-hours').value.trim(),
+        mapsEmbed: document.getElementById('d-maps').value.trim(),
+        instagram: document.getElementById('d-instagram').value.trim(),
+        facebook: document.getElementById('d-facebook').value.trim()
+      };
+
+      const msg = document.getElementById('dealer-saved-msg');
+      msg.classList.remove('hidden');
+      setTimeout(() => msg.classList.add('hidden'), 4000);
+    }
+
+    // ─── Init: fetch data ─────────────────────────────────────
+
+    async function init() {
+      // Products
+      try {
+        const res = await fetch('data/products.json');
+        if (res.ok) {
+          products = await res.json();
+        }
+      } catch (_) { products = []; }
+      renderProdukList();
+
+      // Promos
+      try {
+        const res = await fetch('data/promos.json');
+        if (res.ok) {
+          promos = await res.json();
+        }
+      } catch (_) { promos = []; }
+      renderPromoList();
+
+      // Dealer
+      try {
+        const res = await fetch('data/dealer.json');
+        if (res.ok) {
+          dealer = await res.json();
+          fillDealerForm(dealer);
+        }
+      } catch (_) { dealer = {}; }
+    }
+
+    init();
+  </script>
+</body>
+</html>
