@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mimosa Hyundai Medan — Authorized Dealer</title>
+  <meta name="description" content="Dealer resmi Hyundai di Medan. Temukan lineup terbaru Hyundai 2026 dengan harga OTR terbaik. Santa Fe, Palisade HEV, IONIQ 5, Kona EV, Creta, Stargazer."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/app.js"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+
+  <div id="navbar"></div>
+
+  <main>
+    <!-- Hero Featured Split -->
+    <section id="hero" class="bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8">
+
+          <!-- Left: Featured Product (60%) -->
+          <div id="featured-product" class="lg:col-span-3 bg-gradient-to-br from-[#003876] to-[#1565C0] rounded-2xl overflow-hidden relative min-h-[360px] flex flex-col justify-between p-8">
+            <div class="relative z-10 text-center py-16 text-white">
+              <div class="animate-pulse text-blue-200 text-sm">Memuat...</div>
+            </div>
+          </div>
+
+          <!-- Right: Product List (40%) -->
+          <div class="lg:col-span-2 flex flex-col">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-[#003876] font-black text-sm tracking-widest uppercase">Lineup 2026</h2>
+            </div>
+            <div id="product-list" class="flex flex-col gap-3 flex-1">
+              <div class="text-gray-400 text-sm">Memuat produk...</div>
+            </div>
+            <a href="catalog.html" class="mt-4 border-2 border-[#003876] text-[#003876] font-bold py-3 rounded-xl text-sm text-center hover:bg-[#003876] hover:text-white transition-all duration-200 block">
+              Lihat Semua Produk →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="bg-[#003876]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-white">
+          <div>
+            <div class="text-3xl font-black" id="stat-models">7</div>
+            <div class="text-blue-200 text-xs font-medium mt-1">Model Tersedia</div>
+          </div>
+          <div>
+            <div class="text-3xl font-black">OTR</div>
+            <div class="text-blue-200 text-xs font-medium mt-1">Harga Medan</div>
+          </div>
+          <div>
+            <div class="text-3xl font-black">✓</div>
+            <div class="text-blue-200 text-xs font-medium mt-1">Authorized Dealer</div>
+          </div>
+          <div>
+            <div class="text-3xl font-black">WA</div>
+            <div class="text-blue-200 text-xs font-medium mt-1">Chat Langsung</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category Quick Links -->
+    <section class="py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-[#003876] font-black text-xl mb-6 text-center">Jelajahi Berdasarkan Kategori</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <a href="catalog.html?cat=SUV" class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-gray-100 group">
+            <div class="text-4xl mb-2">🚙</div>
+            <div class="text-[#003876] font-bold text-sm group-hover:text-[#1565C0]">SUV</div>
+            <div class="text-gray-400 text-xs">Santa Fe, Creta, Palisade</div>
+          </a>
+          <a href="catalog.html?cat=Electric" class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-gray-100 group">
+            <div class="text-4xl mb-2">⚡</div>
+            <div class="text-[#003876] font-bold text-sm group-hover:text-[#1565C0]">Electric</div>
+            <div class="text-gray-400 text-xs">IONIQ 5, Kona EV</div>
+          </a>
+          <a href="catalog.html?cat=Hybrid" class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-gray-100 group">
+            <div class="text-4xl mb-2">🌿</div>
+            <div class="text-[#003876] font-bold text-sm group-hover:text-[#1565C0]">Hybrid</div>
+            <div class="text-gray-400 text-xs">Santa Fe HEV, Palisade HEV</div>
+          </a>
+          <a href="catalog.html?cat=MPV" class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-gray-100 group">
+            <div class="text-4xl mb-2">🚌</div>
+            <div class="text-[#003876] font-bold text-sm group-hover:text-[#1565C0]">MPV</div>
+            <div class="text-gray-400 text-xs">Stargazer Cartenz</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <script>
+    async function init() {
+      const [products, dealer] = await Promise.all([
+        loadJSON('products.json'),
+        loadJSON('dealer.json')
+      ]);
+
+      document.getElementById('navbar').innerHTML = renderNavbar('index.html');
+      document.getElementById('footer').innerHTML = renderFooter(dealer);
+      initWAButton(dealer.whatsapp, 'Halo Mimosa Hyundai, saya ingin tanya info produk terbaru.');
+      initMobileMenu();
+
+      const featured = products.find(p => p.featured) || products[0];
+      document.getElementById('stat-models').textContent = products.length;
+
+      document.getElementById('featured-product').innerHTML = `
+        <div class="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-12 translate-x-12"></div>
+        <div class="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full translate-y-10 -translate-x-8"></div>
+        <div class="relative z-10">
+          <span class="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase mb-4">★ Unggulan</span>
+          <p class="text-blue-200 text-xs tracking-widest uppercase mb-1">${featured.tagline}</p>
+          <h1 class="text-white text-4xl lg:text-5xl font-black leading-tight mb-2">${featured.name}</h1>
+          <p class="text-blue-200 text-sm mb-6">Mulai <span class="text-white font-bold text-lg">${formatPrice(featured.priceStart)}</span></p>
+          <div class="aspect-video bg-white/10 rounded-xl overflow-hidden mb-6 max-h-48">
+            <img src="${featured.image}" alt="${featured.name}" class="w-full h-full object-cover" onerror="handleImageError(this)"/>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a href="product.html?id=${featured.id}" class="bg-white text-[#003876] font-black px-6 py-3 rounded-xl text-sm hover:bg-blue-50 transition-colors">Lihat Detail</a>
+            <a href="${buildWhatsAppLink(dealer.whatsapp, 'Halo, saya tertarik dengan ' + featured.name + '. Bisa info lebih lanjut dan jadwal test drive?')}" target="_blank" rel="noopener" class="border-2 border-white/60 text-white font-bold px-6 py-3 rounded-xl text-sm hover:bg-white/10 transition-colors">Test Drive →</a>
+          </div>
+        </div>`;
+
+      const others = products.filter(p => p.id !== featured.id).slice(0, 5);
+      document.getElementById('product-list').innerHTML = others.map(p => `
+        <a href="product.html?id=${p.id}" class="flex items-center gap-4 p-3 bg-white rounded-xl border border-gray-100 hover:border-[#003876] hover:shadow-md transition-all group">
+          <div class="w-16 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
+            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" onerror="handleImageError(this)"/>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[#003876] font-bold text-sm truncate">${p.name}</div>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="text-xs px-2 py-0.5 rounded-full font-medium ${getCategoryColor(p.subcategory)}">${getCategoryLabel(p.category, p.subcategory)}</span>
+              <span class="text-gray-500 text-xs">Mulai ${formatPriceShort(p.priceStart)}</span>
+            </div>
+          </div>
+          <svg class="w-5 h-5 text-gray-300 group-hover:text-[#003876] transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>`).join('');
+    }
+
+    init().catch(console.error);
+  </script>
+</body>
+</html>
