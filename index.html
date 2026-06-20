@@ -19,7 +19,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8">
 
           <!-- Left: Featured Product (60%) -->
-          <div id="featured-product" class="lg:col-span-3 bg-gradient-to-br from-[#003876] to-[#1565C0] rounded-2xl overflow-hidden relative min-h-[360px] flex flex-col justify-between p-8">
+          <div id="featured-product" class="lg:col-span-3 rounded-2xl overflow-hidden relative min-h-[360px] flex flex-col justify-between p-8 bg-gradient-to-br from-[#003876] to-[#1565C0]">
             <div class="relative z-10 text-center py-16 text-white">
               <div class="animate-pulse text-blue-200 text-sm">Memuat...</div>
             </div>
@@ -55,7 +55,7 @@
             <div class="text-blue-200 text-xs font-medium mt-1">Harga Medan</div>
           </div>
           <div>
-            <div class="text-3xl font-black">✓</div>
+            <div class="flex justify-center mb-1"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
             <div class="text-blue-200 text-xs font-medium mt-1">Authorized Dealer</div>
           </div>
           <div>
@@ -72,24 +72,24 @@
         <h2 class="text-[#003876] font-black text-xl mb-6 text-center">Jelajahi Berdasarkan Kategori</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <a href="catalog.html?cat=SUV" class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-gray-100 group">
-            <div class="text-4xl mb-2">🚙</div>
+            <div class="flex justify-center mb-3"><div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center group-hover:bg-sky-100 transition-colors"><svg class="w-7 h-7 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10h2m8 0H9m4 0h2m2 0h2V9a1 1 0 00-1-1h-3l-2-3H7L5 9"/></svg></div></div>
             <div class="text-[#003876] font-bold text-sm group-hover:text-[#1565C0]">SUV</div>
-            <div class="text-gray-400 text-xs">Santa Fe, Creta, Palisade</div>
+            <div class="text-gray-400 text-xs mt-1">Santa Fe, Creta, Palisade</div>
           </a>
           <a href="catalog.html?cat=Electric" class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-gray-100 group">
-            <div class="text-4xl mb-2">⚡</div>
+            <div class="flex justify-center mb-3"><div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center group-hover:bg-green-100 transition-colors"><svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div></div>
             <div class="text-[#003876] font-bold text-sm group-hover:text-[#1565C0]">Electric</div>
-            <div class="text-gray-400 text-xs">IONIQ 5, Kona EV</div>
+            <div class="text-gray-400 text-xs mt-1">IONIQ 5, Kona EV</div>
           </a>
           <a href="catalog.html?cat=Hybrid" class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-gray-100 group">
-            <div class="text-4xl mb-2">🌿</div>
+            <div class="flex justify-center mb-3"><div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center group-hover:bg-blue-100 transition-colors"><svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div></div>
             <div class="text-[#003876] font-bold text-sm group-hover:text-[#1565C0]">Hybrid</div>
-            <div class="text-gray-400 text-xs">Santa Fe HEV, Palisade HEV</div>
+            <div class="text-gray-400 text-xs mt-1">Santa Fe HEV, Palisade HEV</div>
           </a>
           <a href="catalog.html?cat=MPV" class="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-gray-100 group">
-            <div class="text-4xl mb-2">🚌</div>
+            <div class="flex justify-center mb-3"><div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center group-hover:bg-purple-100 transition-colors"><svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div></div>
             <div class="text-[#003876] font-bold text-sm group-hover:text-[#1565C0]">MPV</div>
-            <div class="text-gray-400 text-xs">Stargazer Cartenz</div>
+            <div class="text-gray-400 text-xs mt-1">Stargazer Cartenz</div>
           </a>
         </div>
       </div>
@@ -113,9 +113,16 @@
       const featured = products.find(p => p.featured) || products[0];
       document.getElementById('stat-models').textContent = products.length;
 
-      document.getElementById('featured-product').innerHTML = `
-        <div class="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-12 translate-x-12"></div>
-        <div class="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full translate-y-10 -translate-x-8"></div>
+      // Apply hero background image if set by admin
+      const heroEl = document.getElementById('featured-product');
+      if (dealer.heroImage) {
+        heroEl.style.backgroundImage = `url('${dealer.heroImage}')`;
+        heroEl.style.backgroundSize = 'cover';
+        heroEl.style.backgroundPosition = 'center';
+      }
+
+      heroEl.innerHTML = `
+        ${dealer.heroImage ? '<div class="absolute inset-0 bg-gradient-to-br from-[#003876]/80 to-[#1565C0]/60 rounded-2xl"></div>' : '<div class="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-12 translate-x-12"></div><div class="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full translate-y-10 -translate-x-8"></div>'}
         <div class="relative z-10">
           <span class="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase mb-4">★ Unggulan</span>
           <p class="text-blue-200 text-xs tracking-widest uppercase mb-1">${featured.tagline}</p>
