@@ -63,7 +63,12 @@
       initMobileMenu();
 
       // Init floating WA button
-      initWAButton(dealer.whatsapp, `Halo Mimosa Hyundai, ada yang bisa dibantu?`);
+      const waFloatEl = document.getElementById('wa-float');
+      if (dealer.whatsapp) {
+        const waLink = buildWhatsAppLink(dealer.whatsapp, 'Halo Mimosa Hyundai, ada yang bisa dibantu?');
+        if (waFloatEl) waFloatEl.href = waLink;
+      }
+      initWAButton(dealer.whatsapp, 'Halo Mimosa Hyundai, ada yang bisa dibantu?');
 
       // Badge config
       const badgeConfig = {

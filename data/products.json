@@ -8,7 +8,7 @@
     "featured": true,
     "tagline": "The All-New Hyundai Palisade HEV",
     "description": "Palisade HEV hadir sebagai SUV premium 7-penumpang dengan sistem hybrid canggih yang menggabungkan performa luar biasa dengan efisiensi bahan bakar. Desain eksterior yang commanding dengan interior mewah menjadikannya pilihan ideal untuk keluarga modern yang aktif.",
-    "image": "images/palisade-hev.jpg",
+    "image": "images/palisade-hev.svg",
     "gallery": [],
     "priceStart": 1138900000,
     "variants": [
@@ -33,7 +33,7 @@
     "featured": false,
     "tagline": "The All-New Hyundai Santa Fe",
     "description": "Santa Fe generasi terbaru tampil dengan desain kotak yang bold dan maskulin. Tersedia dalam pilihan mesin Hybrid 2.5L dan Gasoline 2.5L, Santa Fe menawarkan fleksibilitas sesuai kebutuhan Anda.",
-    "image": "images/santa-fe.jpg",
+    "image": "images/santa-fe.svg",
     "gallery": [],
     "priceStart": 743000000,
     "variants": [
@@ -60,7 +60,7 @@
     "featured": false,
     "tagline": "The All-New Hyundai Kona EV",
     "description": "Kona EV adalah crossover listrik yang stylish dan bertenaga. Dengan desain futuristik dan jangkauan berkendara yang impresif, Kona EV adalah pilihan sempurna untuk kehidupan urban modern.",
-    "image": "images/kona-ev.jpg",
+    "image": "images/kona-ev.svg",
     "gallery": [],
     "priceStart": 581850000,
     "variants": [
@@ -88,7 +88,7 @@
     "featured": false,
     "tagline": "Hyundai IONIQ 5",
     "description": "IONIQ 5 adalah crossover listrik ikonik dengan desain pixel-inspired yang revolusioner. Dilengkapi teknologi pengisian ultra-cepat 800V dan interior luas dengan konsol tengah yang bisa digeser.",
-    "image": "images/ioniq5.jpg",
+    "image": "images/ioniq5.svg",
     "gallery": [],
     "priceStart": 824500000,
     "variants": [
@@ -114,7 +114,7 @@
     "featured": false,
     "tagline": "Hyundai Stargazer Cartenz X",
     "description": "Stargazer Cartenz X hadir sebagai MPV premium dengan tampilan yang lebih bold dan sporty. Pilihan tepat untuk keluarga aktif yang menginginkan kapasitas penumpang besar tanpa mengorbankan gaya.",
-    "image": "images/stargazer-cartenz-x.jpg",
+    "image": "images/stargazer-cartenz-x.svg",
     "gallery": [],
     "priceStart": 378250000,
     "variants": [
@@ -138,7 +138,7 @@
     "featured": false,
     "tagline": "Hyundai Stargazer Cartenz",
     "description": "Stargazer Cartenz menawarkan kombinasi sempurna antara kenyamanan, kapasitas, dan keterjangkauan. Tersedia dalam pilihan transmisi M/T dan IVT sesuai preferensi berkendara Anda.",
-    "image": "images/stargazer-cartenz.jpg",
+    "image": "images/stargazer-cartenz.svg",
     "gallery": [],
     "priceStart": 284100000,
     "variants": [
@@ -167,7 +167,7 @@
     "featured": false,
     "tagline": "Hyundai New Creta Facelift",
     "description": "New Creta Facelift tampil segar dengan desain eksterior yang diperbarui dan fitur-fitur terkini. Compact SUV terlaris yang kini hadir dengan pilihan varian N Line yang sporty dan bertenaga.",
-    "image": "images/new-creta.jpg",
+    "image": "images/new-creta.svg",
     "gallery": [],
     "priceStart": 315800000,
     "variants": [
