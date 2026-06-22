@@ -112,17 +112,20 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
-      renderNavbar('about.html');
+      try {
+        renderNavbar('about.html');
 
-      const dealer = await loadJSON('data/dealer.json');
-      if (!dealer) return;
+        const dealer = await loadJSON('data/dealer.json');
+        console.log('Dealer data loaded:', dealer);
+        if (!dealer) {
+          console.error('Dealer data is empty!');
+          return;
+        }
 
-      renderFooter(dealer);
+        renderFooter(dealer);
 
-      // Hero
-      if (dealer.name) document.getElementById('hero-name').textContent = dealer.name;
-      if (dealer.tagline) document.getElementById('hero-tagline').textContent = dealer.tagline;
-      if (dealer.company) document.getElementById('hero-company').textContent = dealer.company;
+      // Hero - Keep hardcoded values (Piki Finelis Zebua)
+      // Don't overwrite with dealer.json data
 
       // Contact
       document.getElementById('dealer-address').textContent = dealer.address || '';
@@ -178,6 +181,10 @@
 
       initWAButton(dealer.whatsapp, 'Halo, saya ingin mengetahui lebih lanjut tentang Mimosa Hyundai.');
       initMobileMenu();
+      } catch (error) {
+        console.error('Error loading about page:', error);
+        alert('Error: ' + error.message);
+      }
     });
   </script>
 </body>
