@@ -113,10 +113,11 @@
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       renderNavbar('about.html');
-      renderFooter(dealer);
 
       const dealer = await loadJSON('data/dealer.json');
       if (!dealer) return;
+
+      renderFooter(dealer);
 
       // Hero
       if (dealer.name) document.getElementById('hero-name').textContent = dealer.name;
